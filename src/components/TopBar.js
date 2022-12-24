@@ -1,7 +1,7 @@
 import React from 'react';
 import emptyProfile from '../assets/images/perfil-empty.png';
 
-function TopBar(){
+function TopBar(props){
     return(
         <React.Fragment>
 				{/*<!-- Topbar -->*/}
@@ -38,7 +38,7 @@ function TopBar(){
 						{/*<!-- Nav Item - User Information -->*/}
 						<li className="nav-item dropdown no-arrow">
 							<a className="nav-link dropdown-toggle" href="/" id="userDropdown">
-								<span className="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+								<span className="mr-2 d-none d-lg-inline text-gray-600 small">{props.user.first_name} {props.user.last_name}</span>
 								<img className="img-profile rounded-circle" src={emptyProfile} alt="user" width="60"/>
 							</a>
 						</li>

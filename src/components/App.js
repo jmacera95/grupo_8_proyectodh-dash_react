@@ -4,6 +4,7 @@ import SideBar from "../components/SideBar/SideBar";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userType, setUsertType] = useState("");
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:3030/api/session", {credentials: "include"})
@@ -12,6 +13,7 @@ function App() {
         if (data.userLogged) {
           setIsLoggedIn(true)
           setUsertType(data.userLogged.user_type.user_type)
+          setUser(data.userLogged);
         }
       });
   }, []);
@@ -20,11 +22,13 @@ function App() {
     <React.Fragment>
       {isLoggedIn && userType === "admin" ? (
         <div id="wrapper">
-          <SideBar />
+          <SideBar 
+            user={user}  
+          />
         </div>
       ) : (
         <div className="d-flex justify-content-md-center align-items-center vh-100">
-          <h1>Please log in.</h1>
+          <a className="text-secondary" href="http://localhost:3030/user/login"><h1>Please log in.</h1></a>
         </div>
       )}
     </React.Fragment>

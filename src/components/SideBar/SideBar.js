@@ -10,7 +10,7 @@ import ContentWrapper from '../ContentWrapper';
 // import SearchMovies from '../SearchMovies';
 import Error404 from '../Error404';
 
-function SideBar(){
+function SideBar(props){
     return(
         <React.Fragment>
             {/*<!-- Sidebar -->*/}
@@ -54,7 +54,9 @@ function SideBar(){
             {/*<!-- End of Sidebar -->*/}
 
             <Routes>
-                <Route path="/" exact element={<ContentWrapper/>}/>
+                <Route path="/" exact element={<ContentWrapper
+                    user={props.user}
+                    />}/>
                 <Route path="*" element={<Error404/>}/>
             </Routes>
             
