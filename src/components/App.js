@@ -7,12 +7,12 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:3030/api/session", {credentials: "include"})
+    fetch("http://localhost:3030/api/session", { credentials: "include" })
       .then((response) => response.json())
       .then((data) => {
         if (data.userLogged) {
-          setIsLoggedIn(true)
-          setUsertType(data.userLogged.user_type.user_type)
+          setIsLoggedIn(true);
+          setUsertType(data.userLogged.user_type.user_type);
           setUser(data.userLogged);
         }
       });
@@ -22,13 +22,17 @@ function App() {
     <React.Fragment>
       {isLoggedIn && userType === "admin" ? (
         <div id="wrapper">
-          <SideBar 
-            user={user}  
-          />
+          <SideBar user={user} />
+        </div>
+      ) : isLoggedIn && userType === "basic" ? (
+        <div className="d-flex justify-content-md-center align-items-center vh-100">
+          <h1>Forbidden.</h1>
         </div>
       ) : (
         <div className="d-flex justify-content-md-center align-items-center vh-100">
-          <a className="text-secondary" href="http://localhost:3030/user/login"><h1>Please log in.</h1></a>
+          <a className="text-secondary" href="http://localhost:3030/user/login">
+            <h1>Please log in.</h1>
+          </a>
         </div>
       )}
     </React.Fragment>
