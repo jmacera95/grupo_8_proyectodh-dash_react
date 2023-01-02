@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import SmallCard from "./SmallCard";
 
 function ContentRowKPIS() {
-  const [users, setUsers] = useState({
-    
-  });
-  const cardProps = [users]
+  const [users, setUsers] = useState({});
+  const [products, setProducts] = useState({});
+  const [priceAvg, setPriceAvg] = useState({});
+  const cardProps = [users, products,priceAvg]
 
 
   useEffect(() => {
@@ -17,8 +17,25 @@ function ContentRowKPIS() {
         valor: users.count,
         icono: "fas fa-user"
       }))
-      // .catch(e => console.error(e));
-    
+
+    fetch("http://localhost:3030/api/products")
+      .then((response) => response.json())
+      .then((products) => setProducts({
+        color: "primary",
+        titulo: "Total Products",
+        valor: products.count,
+        icono: "fas fa-car",
+      }))
+
+      fetch("http://localhost:3030/api/products")
+      .then((response) => response.json())
+      .then((products) => setPriceAvg({
+        color: "primary",
+        titulo: "Price Average",
+        valor: products.count,
+        icono: "fas fa-search-dollar"
+      }))
+
   }, []);
 
   return (
