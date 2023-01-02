@@ -27,14 +27,21 @@ function ContentRowKPIS() {
         icono: "fas fa-car",
       }))
 
+      const initialPrice = 0;
+      const sumPrices = products.vehicles.reduce(
+        (accum, vehicle) => accum + vehicle.price,
+        initialPrice
+      );
+
       fetch("http://localhost:3030/api/products")
       .then((response) => response.json())
       .then((products) => setPriceAvg({
-        color: "primary",
+        color: "warning",
         titulo: "Price Average",
-        valor: products.count,
+        valor: (sumPrices / products.count).toFixed(2),
         icono: "fas fa-search-dollar"
       }))
+
 
   }, []);
 
