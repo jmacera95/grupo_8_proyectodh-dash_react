@@ -26,7 +26,7 @@ function ContentRowKPIS() {
         valor: products.count,
         icono: "fas fa-car",
       }))
-
+git 
       const initialPrice = 0;
       const sumPrices = products.vehicles.reduce(
         (accum, vehicle) => accum + vehicle.price,
@@ -40,7 +40,7 @@ function ContentRowKPIS() {
         titulo: "Price Average",
         valor: (sumPrices / products.count).toFixed(2),
         icono: "fas fa-search-dollar"
-      }))
+      })))
 
 
   }, []);
