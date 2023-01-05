@@ -5,7 +5,7 @@ function ContentRowKPIS() {
   const [users, setUsers] = useState({});
   const [products, setProducts] = useState({});
   const [priceAvg, setPriceAvg] = useState({});
-  const cardProps = [users, products,priceAvg]
+  const cardProps = [users, products, priceAvg]
 
 
   useEffect(() => {
@@ -20,24 +20,49 @@ function ContentRowKPIS() {
 
     fetch("http://localhost:3030/api/products")
       .then((response) => response.json())
-      .then((products) => setProducts({
-        color: "primary",
-        titulo: "Total Products",
-        valor: products.count,
-        icono: "fas fa-car",
-      });
+      .then((products) => {
+        setProducts({
+          color: "primary",
+          titulo: "Total Products",
+          valor: products.count,
+          icono: "fas fa-car",
+        });
 
-      const initialPrice = 0;
-      const sumPrices = products.vehicles.reduce(
-        (accum, vehicle) => accum + vehicle.price,
-        initialPrice);
+        const initialPrice = 0;
+        const sumPrices = products.vehicles.reduce(
+          (accum, vehicle) => accum + vehicle.price,
+          initialPrice);
 
-      setPriceAvg({
-        color: "warning",
-        titulo: "Price Average",
-        valor: (sumPrices / products.count).toFixed(2),
-        icono: "fas fa-search-dollar"
+        setPriceAvg({
+          color: "warning",
+          titulo: "Price Average",
+          valor: (sumPrices / products.count).toFixed(2),
+          icono: "fas fa-search-dollar"
+        })
+
+        // fetch("http://localhost:3030/api/products")
+        // .then((response) => response.json())
+        // .then((data) => {
+        //   setVehicles({
+        //     color: "secondary",
+        //     titulo: "Total vehicles",
+        //     valor: data.count,
+        //     icono: "fas fa-car",
+        //   });
+        //   const initialPrice = 0;
+        //   const sumPrices = data.vehicles.reduce(
+        //     (accum, vehicle) => accum + vehicle.price,
+        //     initialPrice
+        //   );
+        //   setAvgPrice({
+        //     color: "success",
+        //     titulo: "Avg Vehicle Price",
+        //     valor: (sumPrices / data.count).toFixed(2),
+        //     icono: "fas fa-dollar-sign",
+        //   });
       })
+
+
 
 
   }, []);

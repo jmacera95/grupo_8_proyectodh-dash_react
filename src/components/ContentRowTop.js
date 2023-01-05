@@ -1,6 +1,9 @@
 import React from "react";
 import ContentRowKPIS from "./ContentRowKPIS";
 import LastUserInDb from "./LastUserInDb";
+import VehiclesList from "./VehiclesList";
+import VehiclesByModel from "./VehiclesByModel";
+
 
 function ContentRowTop() {
   return (
@@ -19,7 +22,11 @@ function ContentRowTop() {
         <div className="row">
           {/*<!-- Last User in DB -->*/}
           <LastUserInDb />
+          <VehiclesByModel />
           {/*<!-- End content row last user in Data Base -->*/}
+        </div>
+        <div>
+          <VehiclesList/>
         </div>
       </div>
       {/*<!--End Content Row Top-->*/}
